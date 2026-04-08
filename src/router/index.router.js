@@ -1,8 +1,12 @@
-import { Router } from "express";
-import ApuestaRoute from "./apuesta.route.js";
-
+import { Router } from 'express';
+import mongo from './mongo.router.js';
+import UsuarioRouter from './usuario.router.js';
+import EventoRouter from "./evento.router.js";
+import ApuestaRouter from "./apuesta.router.js"
 const router = Router();
-
-router.use(ApuestaRoute);
-
+// router.use(ApuestaRoute);
+// router.use(mongo);
+router.use( "/usuario", UsuarioRouter);
+router.use("/evento", EventoRouter)
+router.use("/apuesta", ApuestaRouter)
 export default router;

@@ -1,5 +1,5 @@
-import Server from "./config/server.js"
+ import Server from "./config/server.js";
 
-const server = new Server();
+ const server = new Server();
 
-server.runServer();
+ server.runServer();

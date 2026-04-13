@@ -52,11 +52,23 @@ const getEnCurso = async()=>{
 
     return result;
 }
+
+export const deleteApuestaForUser = async(id)=>{
+    const id_user = new ObjectId(id);
+    const connection = await connectionTournament();
+    const apuestaCollection = connection.collection("apuesta");
+
+    const res = apuestaCollection.deleteMany({
+        usuario_id : id_user
+    })
+    return res
+}
 export default {
     getApuestaModel,
     getApuestaPorUsuarioModel,
     getApuestaPorEventoModel,
     postApuestaModel,
     actualizarEstadoApuestaModel,
-    getEnCurso
+    getEnCurso,
+    deleteApuestaForUser
 };

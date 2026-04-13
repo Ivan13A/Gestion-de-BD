@@ -1,9 +1,15 @@
+import { ObjectId } from "mongodb";
 import { connectionTournament } from "../services/mongo.service.js"
+import { EVENTO_COLECCTION } from "../constans/evento.const.js";
 
-export const getEventoModel = async() =>{
+const getColeccion = async ()=>{
     const connection = await connectionTournament();
     const result = await connection.collection("evento").find({}).toArray();
-    return result;
+}
+export const getEventoModel = async() =>{
+    const connection = await connectionTournament();
+    const evento = await connection.collection(EVENTO_COLECCTION);
+    return evento;
 }
 
 export const postEventoModelUnico = async(json) =>{
@@ -21,8 +27,18 @@ export const postEventoModelMultiple = async (json) =>{
     return result;
 }
 
+export const deleteEvento = async (id)=>{
+    const id_mongo = new ObjectId(id);
+    const eliminacion = (await getColeccion()).deleteOne(
+        {
+            _id: id_mongo
+        }
+    )
+    return eliminacion;
+}
 export default {
     getEventoModel,
     postEventoModelUnico,
-    postEventoModelMultiple
+    postEventoModelMultiple,
+    deleteEvento
 }

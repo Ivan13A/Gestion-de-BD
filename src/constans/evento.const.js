@@ -1,0 +1,1 @@
+export  const EVENTO_COLECCTION = "eventos"

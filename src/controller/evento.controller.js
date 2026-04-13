@@ -17,9 +17,19 @@ export const postEventoMultiple = async(req,res) => {
     const result = await eventoModel.postEventoModelMultiple(json)
     res.send({data: json})
 }
+export const deleteEvento = async (req,res) => {
+    try {
+        const { id }= req.params
+        const result = await eventoModel.deleteEvento(id);
+        return res.send(result)
 
+    } catch (e) {
+        return res.send({msn: "No se pudo eliminar"})
+    }
+}
 export default{
     getEvento,
     postEvento,
-    postEventoMultiple
+    postEventoMultiple,
+    deleteEvento
 }

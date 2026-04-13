@@ -31,9 +31,16 @@ export const updateSaldo = async(id, aumento)=>{
     )
     return result
 }
+export const deleteUsuario = async (id)=>{
+    const connection = await connectionTournament();
+    const usuario = connection.collection("usuario").deleteOne({_id: new ObjectId(id)})
+    return usuario;
+
+}
 export default{
     getUsuarioModel,
     postUsuarioModelUnico,
     postUsuarioModelMultiple,
-    updateSaldo
+    updateSaldo,
+    deleteUsuario
 }

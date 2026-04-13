@@ -18,8 +18,14 @@ export const postUsuarioMultiple = async(req,res) => {
     res.send({data: json})
 }
 
-export const deleteUsuario = (req,res) => {
-    
+export const deleteUsuario = async (req,res) => {
+    const { id } = req.params;
+    const r = await deleteApuestaForUser(id);
+    const result = await usuariomodel.deleteUsuario(id)
+    return res.send({
+        r, 
+        result
+    })
 }
 
 export const putUsuario = (req,res) => {

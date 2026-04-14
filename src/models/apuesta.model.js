@@ -63,6 +63,49 @@ export const deleteApuestaForUser = async(id)=>{
     })
     return res
 }
+ export const porDeporte = async (nombre) => {
+    //usuarios que apostaron en un deporte especifico
+    const connection = await connectionTournament();
+    const apuestaCollection = connection.collection("apuesta");
+    const data = await apuestaCollection.aggregate(
+        [
+            {
+                $lookup :{
+                    from : "evento", // De donde voy a sacar los datos
+                    localField: "evento_id", // En mi coleccion cual campo relaciono
+                    foreignField: "_id", //campo externo
+                    as: "evento"
+                }
+            },
+            {
+                $unwind: "$evento"
+            },
+            {
+                $match:  { "evento.deporte": nombre}
+            },
+            {
+                $lookup :{
+                    from : "usuario", // De donde voy a sacar los datos
+                    localField: "usuario_id", // En mi coleccion cual campo relaciono
+                    foreignField: "_id", //campo externo
+                    as: "usuario"
+                }
+            },
+            {
+                $unwind: "$usuario"
+            },
+            {
+                $project:{
+                    _id: 0,
+                    correo: "$usuario.correo",
+                    nombre: "$usuario.nombre"
+                }
+            }
+        ]
+ 
+    ).toArray();
+    return data;
+ }
 export default {
     getApuestaModel,
     getApuestaPorUsuarioModel,
@@ -70,5 +113,6 @@ export default {
     postApuestaModel,
     actualizarEstadoApuestaModel,
     getEnCurso,
-    deleteApuestaForUser
+    deleteApuestaForUser,
+    porDeporte
 };

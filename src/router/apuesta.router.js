@@ -17,6 +17,6 @@ router.put("/update/:id/estado", apuestaController.actualizarEstadoApuesta);
 /* consulta en curso solo deporte y posible ganancia*/
 
 router.get("/en-curso", apuestaController.getEnCurso)
-
+router.get("/por-deporte/:nombre", apuestaController.porDeporte)
 
 export default router;

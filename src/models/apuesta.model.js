@@ -96,7 +96,7 @@ export const deleteApuestaForUser = async(id)=>{
             },
             {
                 $project:{
-                    _id: 0,
+                    _id: 0, 
                     correo: "$usuario.correo",
                     nombre: "$usuario.nombre"
                 }

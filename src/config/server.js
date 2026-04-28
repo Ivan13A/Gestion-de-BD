@@ -1,5 +1,6 @@
 import express from 'express'
 import IndexRoute from "../router/index.router.js"
+import { verifiyToken } from '../middleware/verify.middleware.js';
 
 export default class Server{
 
@@ -14,6 +15,7 @@ export default class Server{
     
     middleware(){
         this.app.use(express.json())
+        this.app.use("/api", verifiyToken)
     }
 
     route(){

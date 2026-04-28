@@ -18,36 +18,44 @@ export const postUsuarioMultiple = async(req,res) => {
     res.send({data: json})
 }
 
-export const deleteUsuario = async (req,res) => {
-    const { id } = req.params;
-    const r = await deleteApuestaForUser(id);
-    const result = await usuariomodel.deleteUsuario(id)
-    return res.send({
-        r, 
-        result
-    })
+
+export const updateSaldo = (req,res) => {
+    const {id} = req.param
+    const result = usuariomodel.updateSaldo(id)
+     return res.status(200).json({ "msn": "Saldo de usuario actualizado ", result })
+}   
+
+export const searchUsuario = async(req,res) => {
+    const saldo = req.params.saldo;
+    const data = await usuariomodel.searchUsuarioModel(saldo)
+    return res.status(200).json({"msn":"data",data})
 }
 
-export const putUsuario = (req,res) => {
-    
+export const usuarioPaisCorreo = async(req,res) => {
+    const data = await usuariomodel.usuarioPaisCorreo()
+    return res.status(200).json({"msn":"data",data})
 }
 
+export const deleteUsuario = async(req,res) => {
+    const {id} = req.params;
+    const result = await usuariomodel.deleteUsuarioModel(id);
+     return res.status(200).json({ "msn": `Usuario con ID ${id} eliminado`, result })
+}   
 
-export const updateSaldo = (req, res)=>{
-    const { id } = req.params;
-    const { aumento }= req.body;
-    const result = usuariomodel.updateSaldo(id,aumento);
-
-
-    res.json({
-        data: result
-    });
+export const totalApostado = async(req,res) => {
+    const id = req.params
+    const data = await usuariomodel.totalApostado(id)
+    return res.status(200).json({"msn":"data",data})
 }
+
 export default {
     getUsuario,
     postUsuario,
     postUsuarioMultiple,
-    putUsuario,
+    updateSaldo,
     deleteUsuario,
-    updateSaldo
+    searchUsuario,
+    usuarioPaisCorreo,
+    deleteUsuario,
+    totalApostado
 }

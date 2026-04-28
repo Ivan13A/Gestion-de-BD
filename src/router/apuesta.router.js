@@ -9,14 +9,14 @@ router.use(express.json());
 router.get("/get", apuestaController.getApuesta);
 router.get("/get/usuario/:usuarioId", apuestaController.getApuestaPorUsuario);
 router.post("/post", apuestaController.postApuesta);
+router.post("/postMultiple", apuestaController.postApuestaMultiple);
 router.put("/update/:id/estado", apuestaController.actualizarEstadoApuesta);
+router.get("/por-deporte/:nombre", apuestaController.porDeporte)
+router.get('/getLookup', apuestaController.getLookup)
 
-
-
-
-/* consulta en curso solo deporte y posible ganancia*/
+/* Consulta en curso solo deporte y posible ganacia*/
 
 router.get("/en-curso", apuestaController.getEnCurso)
-router.get("/por-deporte/:nombre", apuestaController.porDeporte)
+
 
 export default router;

@@ -25,4 +25,6 @@ router.get('/delete', apuestaController.deleteTwo)
 
 router.get('/getHash', apuestaController.getHash)
 
+
+
 export default router;

@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
-
-const client = new MongoClient("mongodb://localhost:27017");
+import { getEnv } from "../config/default.js";
+const client = new MongoClient(`${getEnv("mongoUrl")}`);
 
 export const connectionTournament = async() => {
     try{

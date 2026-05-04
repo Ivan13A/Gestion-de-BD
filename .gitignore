@@ -1,0 +1,9 @@
+###> MODULES<###
+/node_modules
+
+###>EDITORES<###
+.vscode
+.idea
+
+###>ENVIROMENS<###
+.env

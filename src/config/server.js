@@ -1,12 +1,13 @@
 import express from 'express'
 import IndexRoute from "../router/index.router.js"
 import { verifiyToken } from '../middleware/verify.middleware.js';
+import { getEnv } from './default.js';
 
 export default class Server{
 
     constructor(){
         this.app = express();
-        this.port = 8080;
+        this.port = getEnv('port');
     }
 
     async connectionDB(){

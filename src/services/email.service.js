@@ -1,10 +1,11 @@
 import nodemailer from "nodemailer"
+import { getEnv } from "../config/default.js";
 const transporter = nodemailer.createTransport({
     service: 'email',
     auth: {
         user: 'iaamayab@ufpso.edu.co',
         //contraseña de aplicacion:rlxf occw wclo cchl
-        pass: 'rlxf occw wclo cchl'
+        pass: `${getEnv('email.Url')}`
     },
     tls: {
         rejectUnauthorized: false

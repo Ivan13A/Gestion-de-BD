@@ -7,3 +7,5 @@
 
 ###>ENVIROMENS<###
 .env
+
+/src/config/gestion-de-bd-firebase-adminsdk-fbsvc-66ec3fccf1.json

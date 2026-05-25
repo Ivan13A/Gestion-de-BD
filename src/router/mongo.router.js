@@ -1,6 +1,7 @@
 import express from "express";
 import {Router} from "express"
 import { MongoClient, ObjectId } from "mongodb";
+import { connectionTournament } from "../services/mongo.service.js";
 
 
 const router = Router();
@@ -81,5 +82,28 @@ router.get("/getTorneo", async (req,res) => {
     }
     const data = await tournament.find(filtro, view).toArray();
     res.json(data)
+})
+router.get("/testing", async (req, res)=>{
+    const connection = connectionTournament();
+
+    try {
+        const a = await connection.collection("persona").insertOne({
+        'nombre': 'Ivan',
+        "documento": "12345",
+        "correo": 'asgfd@gmail.com'
+    })
+    } catch (error) {
+        if(error.code === 121){
+            return res.status(400).json({
+                msn : 'Error de validacion',
+                error: error.errInfo
+            })
+        }
+        return res.status(500).json({
+            msn: 'Error interno del servidor'
+        })
+
+    }
+    
 })
 export default router;

@@ -2,6 +2,7 @@ import express from 'express'
 import IndexRoute from "../router/index.router.js"
 import { verifiyToken } from '../middleware/verify.middleware.js';
 import { getEnv } from './default.js';
+import { schemaMongo } from '../models/mongodb.model.js';
 
 export default class Server{
 
@@ -11,7 +12,7 @@ export default class Server{
     }
 
     async connectionDB(){
-
+        await schemaMongo();
     }
     
     middleware(){

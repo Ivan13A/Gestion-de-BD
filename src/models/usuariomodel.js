@@ -30,13 +30,14 @@ export const postUsuarioModelMultiple = async (json) =>{
 //Terminar la funcion de actualizar el saldo de un usuario 
 export const updateSaldo = async (id) => {
     const connection = await connectionTournament();
-    const usuario = await connection.collection(USUARIO_COLLECTION).find({_id: new ObjectId(id)});
+    const usuario = await connection.collection(USUARIO_COLLECTION).findOne({_id: new ObjectId(id)});
 
     if (!usuario) {
         throw new Error("Usuario no encontrado");
     }
 
-    const apuestasGanadas = await connection.collection(APUESTA_COLLECTION).find({usuario_id: new ObjectId(id), estado :"ganada"}).toArray();
+    const apuestasGanadas = await connection.collection(APUESTA_COLLECTION).find({
+        usuario_id: new ObjectId(id), estado :"ganada"}).toArray();
 
     if (apuestasGanadas.length === 0) {
         return {

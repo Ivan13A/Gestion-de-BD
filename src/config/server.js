@@ -12,7 +12,12 @@ export default class Server{
     }
 
     async connectionDB(){
-        await schemaMongo();
+        try {
+            await schemaMongo();
+        } catch (e) {
+            if (e.codeName !== 'NamespaceExists') throw e;
+        }
+        
     }
     
     middleware(){

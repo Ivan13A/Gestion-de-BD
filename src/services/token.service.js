@@ -7,5 +7,5 @@ export const generateToken = (data) => {
             'role' : 'administrador',
             'usuario' : data.username
         }
-    }, 'secreto_exemplo_changeme')
+    }, 'secreto_exemplo_changeme') 
 }

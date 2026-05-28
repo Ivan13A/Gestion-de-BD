@@ -20,7 +20,7 @@ export const postUsuarioMultiple = async(req,res) => {
 
 
 export const updateSaldo = (req,res) => {
-    const {id} = req.param
+    const {id} = req.params;
     const result = usuariomodel.updateSaldo(id)
      return res.status(200).json({ "msn": "Saldo de usuario actualizado ", result })
 }   
@@ -43,7 +43,7 @@ export const deleteUsuario = async(req,res) => {
 }   
 
 export const totalApostado = async(req,res) => {
-    const id = req.params
+    const id = req.params;
     const data = await usuariomodel.totalApostado(id)
     return res.status(200).json({"msn":"data",data})
 }

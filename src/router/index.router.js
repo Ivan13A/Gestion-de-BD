@@ -10,7 +10,7 @@ import AuthRouter from "./auth.router.js";
 const router = Router();
 // router.use(ApuestaRoute);
 // router.use(mongo);
-router.use( "/api//usuario", UsuarioRouter);
+router.use( "/api/usuario", UsuarioRouter);
 router.use("/api/evento", EventoRouter)
 router.use("/api/apuesta", ApuestaRouter)
 router.use("/auth",AuthRouter);

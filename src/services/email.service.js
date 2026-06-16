@@ -23,7 +23,8 @@ export const sendOTP = async (correo, otp)=>{
         <h2 style="color: #333;">Verificación de identidad</h2>
         <p>Hola, recibiste este correo porque iniciaste sesión en <strong>Casa de Apuestas</strong>.</p>
         <p>Tu código OTP es:</p>
-        <div style="background: #f4f4f4; border-radius: 8px; padding: 15px; text-align: center; font-size: 32px; font-weight: bold; letter-spacing: 8px; color: #333;">
+        <div style="background: #f4f4f4; border-radius: 8px; padding: 15px; text-align: center; 
+        font-size: 32px; font-weight: bold; letter-spacing: 8px; color: #333;">
             ${otp}
         </div>
         <p style="color: #888; font-size: 13px; margin-top: 15px;">Este código es válido por <strong>5 minutos</strong>. Si no fuiste tú, ignora este correo.</p>

@@ -11,7 +11,7 @@ export const verifiyToken = (req,res,next) => {
     }
 
     const tokenSplit = token.split(" ")
-    console.log(tokenSplit)
+    //console.log(tokenSplit)
     if(tokenSplit[0] != 'Bearer') {
          return res.status(401).json({
             success: false,
@@ -19,9 +19,9 @@ export const verifiyToken = (req,res,next) => {
         })
     }
 
-    jwt.verify(tokenSplit[1], 'secreto_exemplo_changeme', (err, decode) => {
-        console.log(err)
-        if(err){
+    jwt.verify(tokenSplit[1], 'secreto_exemplo_changeme', (e, decode) => {
+        console.log(e)
+        if(e){
             
             return res.status(401).json({
                 success: false,

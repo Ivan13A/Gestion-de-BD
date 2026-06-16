@@ -35,9 +35,9 @@ export const update = async(req,res) => {
 }
 
 export const hset = async(req,res) => {
-     const response = await redis.hSet('info:192197',{
-        'name' : "Keiner",
-        'lastname': "Martinez",
+     const response = await redis.hSet('info:192157',{
+        'name' : "Ivan",
+        'lastname': "Amaya",
         'age' :32
     });
 
@@ -47,14 +47,14 @@ export const hset = async(req,res) => {
 
 export const deleteTwo = async(req,res) => {
     // const data = await redis.del('info:192197')
-    const data = await redis.hDel('info:192197', 'age')
-    const response = await redis.hGetAll('info:192197')
+    const data = await redis.hDel('info:192157', 'age')
+    const response = await redis.hGetAll('info:192157')
     res.send(response);
 }
 
 export const getHash = async (req,res) => {
-     const response = await redis.hGetAll('info:192197');
-    const ttl = await redis.ttl('info:192197')
+     const response = await redis.hGetAll('info:192157');
+    const ttl = await redis.ttl('info:192157')
     res.json({success: true, data: response, ttl})
 }
 

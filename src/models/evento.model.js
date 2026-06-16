@@ -8,8 +8,9 @@ export const getCollection = async () => {
     return result
 }
 
-export const getEventoModel = async() =>{
-    const result = (await getCollection).find({}).toArray();
+export const getEventoModel = async() => {
+    const collection = await getCollection();
+    const result = await collection.find({}).toArray();
     return result;
 }
 
@@ -24,19 +25,22 @@ export const postEventoModelMultiple = async (json) =>{
     return result;
 }
 export const SearchEventoModel = async (evento) => {
-    (await getCollection()).find({deporte: evento}).toArray();
+    const collection = await getCollection();
+    const result = await collection.find({ deporte: evento }).toArray();
     return result;
 }
 
 
 //eventos donde la cuota local sea mayor a 2.0
 export const eventoCuota = async() => {
-    (await getCollection()).find({cuota_local: {$gt: 2.0}}).toArray();
+    const collection = await getCollection();
+    const result = await collection.find({ cuota_local: { $gt: 2.0 } }).toArray();
     return result;
 }
 
 export const modificarCuota = async (id, nuevaCuota) => {
-    (await getCollection()).updateOne(
+    const collection = await getCollection();
+    const result = await collection.updateOne(
         { _id: new ObjectId(id) },
         { $set: { cuota_visitante: nuevaCuota } }
     );
@@ -44,28 +48,23 @@ export const modificarCuota = async (id, nuevaCuota) => {
 }
 
 export const deleteEvento = async(id) => {
-    const id_mongo =  new ObjectId(id)
-    const result = (await getCollection()).deleteOne({
-          _id: id_mongo
-    })
+    const collection = await getCollection();
+    const result = await collection.deleteOne({ _id: new ObjectId(id.id) });
     return result;
 }
-
 export const deleteEventoModel = async () => {
-    
-    
+    const collection = await getCollection();
     const fechaActual = new Date();
-    fechaActual.setHours(0, 0, 0, 0); 
-    
-    
-    const result = (await getCollection()).deleteMany({
-        fecha: { $lt: fechaActual }  
-    });
-    
+    fechaActual.setHours(0, 0, 0, 0);
+    const result = await collection.deleteMany(
+        { fecha: 
+            { $lt: fechaActual 
+
+            } 
+        });
     return {
         msn: "Eventos finalizados eliminados",
-        eliminados: result.deletedCount,
-        result
+        eliminados: result.deletedCount
     };
 }
 
